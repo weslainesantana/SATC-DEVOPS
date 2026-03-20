@@ -20,5 +20,9 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
 
-      - name: Docker build
-        run: docker build -t DOCKER_USERNAME/SATC-DEVOPS:001
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          push: false
+          tags: ${{ secrets.DOCKER_USERNAME }}/SATC-DEVOPS:001
